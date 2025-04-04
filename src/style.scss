@@ -1,6 +1,58 @@
+img {
+  width: 70px;
+  height: 70px;
+}
+.background {
+  width: 800px;
+  height: 700px;
+  background: url("/boat.png");
+  background-repeat: no-repeat;
+  background-size: 800px 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.header {
+  width: 800px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__captain {
+    width: 150px;
+    height: 150px;
+
+    &--img {
+      width: 120px;
+      height: 120px;
+    }
+    &--btn {
+      background-color: black;
+      font-weight: bolder;
+      color: white;
+      padding: 2%;
+    }
+  }
+  &__notebook {
+    width: 150px;
+    height: 150px;
+    &--img {
+      width: 120px;
+      height: 120px;
+    }
+
+    &--btn {
+      background-color: black;
+      font-weight: bolder;
+      color: white;
+      padding: 2%;
+    }
+  }
+}
 .board {
-  width: 720px;
-  height: 720px;
+  width: 520px;
+  height: 520px;
   list-style-type: none;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -10,8 +62,45 @@
   margin: 0px;
   &__piece {
     border: 1px solid black;
-    width: 140px;
-    height: 140px;
+    width: 100px;
+    height: 100px;
     margin: 0px;
+    display: flex;
+    flex-direction: row;
+    // align-items: center;
+    // justify-content: center;
+    &--tool {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      border: 0px;
+      padding: 0px;
+    }
+    &--person {
+      width: 100%;
+      height: 100%;
+      justify-self: center;
+      background-color: white;
+      border: 0px;
+      padding: 0px;
+    }
   }
+}
+.overlay {
+  &__testimonies {
+    position: absolute;
+    display: none;
+    width: 600px;
+    height: 500px;
+    background-color: antiquewhite;
+    &--close {
+      padding: 2%;
+    }
+  }
+}
+
+.weapons {
+  position: absolute;
+  width: 0px;
+  height: 0px;
 }
