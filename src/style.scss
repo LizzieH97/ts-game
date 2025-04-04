@@ -8,12 +8,10 @@
   gap: 0%;
   padding: 0px;
   margin: 0px;
+  &__piece {
+    border: 1px solid black;
+    width: 140px;
+    height: 140px;
+    margin: 0px;
+  }
 }
-.board__piece {
-  border: 1px solid black;
-  width: 140px;
-  height: 140px;
-  margin: 0px;
-}
-
-/*# sourceMappingURL=style.css.map */
