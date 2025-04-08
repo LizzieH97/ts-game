@@ -11,9 +11,10 @@
     <script type="module" src="/src/main.ts"></script>
     <main>
       <section class="background">
-        <div class="overlay">
-          <div class="overlay__testimonies">
-            <button class="overlay__testimonies--close">Close</button>
+        <div class="">
+          <div class="testimonies">
+            <p class="testimonies__text"></p>
+            <button class="testimonies__close">Close</button>
           </div>
         </div>
         <div class="weapons"></div>
@@ -55,12 +56,16 @@
           <li class="board__piece">7</li>
           <li class="board__piece">8</li>
           <li class="board__piece">
-            <button class="board__piece--person">
-              <img src="/olivia.png" id="olivia" /></button
-            ><button class="board__piece--person">
-              <img src="/tom.png" id="tom" /></button
-            ><button class="board__piece--person" style="padding-left: 10px">
-              <img src="/rachel.png" id="rachel" />
+            <button class="board__piece--person" id="olivia">
+              <img src="/olivia.png" /></button
+            ><button class="board__piece--person" id="tom">
+              <img src="/tom.png" /></button
+            ><button
+              class="board__piece--person"
+              style="padding-left: 10px"
+              id="rachel"
+            >
+              <img src="/rachel.png" />
             </button>
           </li>
           <li class="board__piece">10</li>
@@ -86,10 +91,10 @@
             </button>
           </li>
           <li class="board__piece">
-            <button class="board__piece--person">
-              <img src="/angela.png" id="angela" /></button
-            ><button class="board__piece--person">
-              <img src="/george.png" id="george" />
+            <button class="board__piece--person" id="angela">
+              <img src="/angela.png" /></button
+            ><button class="board__piece--person" id="george">
+              <img src="/george.png" />
             </button>
           </li>
           <li class="board__piece">23</li>

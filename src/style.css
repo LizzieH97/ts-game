@@ -73,7 +73,6 @@ img {
 .board__piece--tool {
   width: 100%;
   height: 100%;
-  background-color: white;
   border: 0px;
   padding: 0px;
 }
@@ -82,19 +81,27 @@ img {
   height: 100%;
   justify-self: center;
   background-color: white;
-  border: 0px;
+  border: 2px solid black;
   padding: 0px;
+  margin: 1px;
 }
 
-.overlay__testimonies {
+.testimonies {
   position: absolute;
   display: none;
   width: 600px;
   height: 500px;
   background-color: antiquewhite;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 30px;
 }
-.overlay__testimonies--close {
+.testimonies__close {
   padding: 2%;
+  margin: 5%;
+}
+.testimonies__text {
+  padding: 5%;
 }
 
 .weapons {
