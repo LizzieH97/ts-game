@@ -11,11 +11,10 @@
     <script type="module" src="/src/main.ts"></script>
     <main>
       <section class="background">
-        <div class="">
-          <div class="testimonies">
-            <p class="testimonies__text"></p>
-            <button class="testimonies__close">Close</button>
-          </div>
+        <div class="overlay">
+          <img class="overlay__img" src="" />
+          <p class="overlay__text"></p>
+          <button class="overlay__close">Close</button>
         </div>
         <div class="weapons"></div>
         <div class="header">
@@ -35,7 +34,7 @@
         </div>
         <ul class="board">
           <li class="board__piece">
-            <button class="board__piece--tool">
+            <button class="board__piece--tool" id="bucket">
               <img src="/bucket.png" />
             </button>
           </li>
@@ -46,11 +45,15 @@
           </li>
           <li class="board__piece">3</li>
           <li class="board__piece">
-            <button class="board__piece--tool"><img src="/chair.png" /></button>
+            <button class="board__piece--tool" id="chair">
+              <img src="/chair.png" />
+            </button>
           </li>
 
           <li class="board__piece">
-            <button class="board__piece--tool"><img src="/rope.png" /></button>
+            <button class="board__piece--tool" id="rope">
+              <img src="/rope.png" />
+            </button>
           </li>
           <li class="board__piece">6</li>
           <li class="board__piece">7</li>
@@ -71,7 +74,9 @@
           <li class="board__piece">10</li>
           <li class="board__piece">11</li>
           <li class="board__piece">
-            <button class="board__piece--tool"><img src="/chair.png" /></button>
+            <button class="board__piece--tool" id="chair2">
+              <img src="/chair.png" />
+            </button>
           </li>
           <li class="board__piece">13</li>
           <li class="board__piece">14</li>
@@ -81,12 +86,12 @@
           <li class="board__piece">18</li>
           <li class="board__piece">19</li>
           <li class="board__piece">
-            <button class="board__piece--tool">
+            <button class="board__piece--tool" id="extinguisher">
               <img src="/extinguisher.png" />
             </button>
           </li>
           <li class="board__piece">
-            <button class="board__piece--tool">
+            <button class="board__piece--tool" id="barrel">
               <img src="/barrel.png" />
             </button>
           </li>

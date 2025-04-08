@@ -1,10 +1,13 @@
 import "./style.css";
-import { george } from "../assets/george";
-import { angela } from "../assets/angela";
-import { liam } from "../assets/liam";
-import { olivia } from "../assets/olivia";
-import { rachel } from "../assets/rachel";
-import { tom } from "../assets/tom";
+import { george, angela, liam, olivia, rachel, tom } from "../assets/people";
+import {
+  bucket,
+  chair,
+  rope,
+  chair2,
+  extinguisher,
+  barrel,
+} from "../assets/weapons";
 
 const background = document.querySelector<HTMLElement>(".background");
 const board = document.querySelector<HTMLUListElement>(".board");
@@ -12,57 +15,98 @@ const boardPieces = document.querySelectorAll<HTMLLIElement>(".board__piece");
 const people = document.querySelectorAll<HTMLButtonElement>(
   ".board__piece--person"
 );
-const testimoniesBox = document.querySelector<HTMLDivElement>(".testimonies");
-const testimonies =
-  document.querySelector<HTMLDivElement>(".testimonies__text");
-const closeBtn = document.querySelector<HTMLButtonElement>(
-  ".testimonies__close"
+const weapons = document.querySelectorAll<HTMLDivElement>(
+  ".board__piece--tool"
 );
-
-const weapons = document.querySelector<HTMLDivElement>(".weapons");
+const cluesBox = document.querySelector<HTMLDivElement>(".overlay");
+const clues = document.querySelector<HTMLDivElement>(".overlay__text");
+const icon = document.querySelector<HTMLImageElement>(".overlay__img");
+const closeBtn = document.querySelector<HTMLButtonElement>(".overlay__close");
 
 if (
   !board ||
   !boardPieces ||
   !background ||
-  !testimonies ||
+  !clues ||
   !closeBtn ||
-  !testimoniesBox
+  !cluesBox ||
+  !icon
 ) {
   throw new Error("Something went wrong! ");
 }
 
 board.style.background = "url('/background.jpg')";
 const handlePersonClick = (event: Event) => {
-  if (!testimonies || !event.currentTarget) {
+  if (!clues || !event.currentTarget) {
     throw new Error("Something went wrong! ");
   }
-  testimoniesBox.style.display = "flex";
+  cluesBox.style.display = "flex";
   const person = event.currentTarget as HTMLElement;
   console.log(person.id);
-
+  console.log(icon.src);
   if (person.id == "angela") {
-    testimonies.innerText += angela.initial;
+    clues.innerText += angela.initial;
+    icon.src = "/angela.png";
   }
   if (person.id == "george") {
-    testimonies.innerText += george.initial;
+    clues.innerText += george.initial;
+    icon.src = "/george.png";
   }
   if (person.id == "liam") {
-    testimonies.innerText += liam.initial;
+    clues.innerText += liam.initial;
+    icon.src = "/liam.png";
   }
   if (person.id == "olivia") {
-    testimonies.innerText += olivia.initial;
+    clues.innerText += olivia.initial;
+    icon.src = "/olivia.png";
   }
   if (person.id == "rachel") {
-    testimonies.innerText += rachel.initial;
+    clues.innerText += rachel.initial;
+    icon.src = "/rachel.png";
   }
   if (person.id == "tom") {
-    testimonies.innerText += tom.initial;
+    clues.innerText += tom.initial;
+    icon.src = "/tom.png";
+  }
+};
+const handleWeaponClick = (event: Event) => {
+  if (!clues || !event.currentTarget) {
+    throw new Error("Something went wrong! ");
+  }
+  cluesBox.style.display = "flex";
+  const weapon = event.currentTarget as HTMLElement;
+  if (weapon.id == "bucket") {
+    clues.innerText += bucket.initial;
+    icon.src = "/bucket.png";
+  }
+  if (weapon.id == "chair") {
+    clues.innerText += chair.initial;
+    icon.src = "/chair.png";
+  }
+  if (weapon.id == "rope") {
+    clues.innerText += rope.initial;
+    icon.src = "/rope.png";
+  }
+  if (weapon.id == "chair2") {
+    clues.innerText += chair2.initial;
+    icon.src = "/chair.png";
+  }
+  if (weapon.id == "extinguisher") {
+    clues.innerText += extinguisher.initial;
+    icon.src = "/extinguisher.png";
+  }
+  if (weapon.id == "barrel") {
+    clues.innerText += barrel.initial;
+    icon.src = "/barrel.png";
   }
 };
 people.forEach((person) => person.addEventListener("click", handlePersonClick));
 
+weapons.forEach((weapon) =>
+  weapon.addEventListener("click", handleWeaponClick)
+);
+
 closeBtn.addEventListener("click", () => {
-  testimonies.innerText = "";
-  testimoniesBox.style.display = "none";
+  clues.innerText = "";
+  cluesBox.style.display = "none";
 });

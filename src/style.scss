@@ -88,21 +88,32 @@ img {
     }
   }
 }
-.testimonies {
+.overlay {
   position: absolute;
   display: none;
   width: 600px;
-  height: 500px;
+  height: 400px;
   background-color: antiquewhite;
   flex-direction: column;
+  flex-flow: row;
   justify-content: space-between;
+  align-items: normal;
   border-radius: 30px;
+  margin-top: 100px;
+
   &__close {
-    padding: 2%;
-    margin: 5%;
+    padding: 2px;
+    margin: 5px;
+    width: 70px;
+    height: 50px;
   }
   &__text {
-    padding: 5%;
+    padding: 10px;
+    width: 300px;
+  }
+  &__img {
+    width: 100px;
+    height: 100px;
   }
 }
 
