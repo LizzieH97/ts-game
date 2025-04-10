@@ -18,31 +18,38 @@ img {
 .header {
   width: 800px;
   height: 180px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   justify-content: center;
   align-items: center;
 }
 .header__captain {
-  width: 150px;
-  height: 150px;
+  grid-column: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 160px;
 }
 .header__captain--img {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
 }
 .header__captain--btn {
   background-color: black;
   font-weight: bolder;
   color: white;
-  padding: 2%;
+  padding: 5%;
 }
 .header__notebook {
+  grid-column: 1;
   width: 150px;
   height: 150px;
 }
 .header__notebook--img {
-  width: 120px;
-  height: 120px;
+  width: 90px;
+  height: 90px;
 }
 .header__notebook--btn {
   background-color: black;
@@ -100,32 +107,35 @@ img {
   background-size: cover;
   flex-direction: column;
   flex-flow: column;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
   align-items: center;
   border-radius: 40px;
   margin-top: 100px;
+  gap: 2px;
 }
 .overlay__close {
   padding: 5px;
-  margin: 5px;
+  margin: 10px 90px 0px 0px;
   width: 50px;
   height: 30px;
 }
 .overlay__text {
   width: 300px;
   font-size: larger;
-  padding: 0px;
-  padding-right: 60px;
+  margin: 0px 70px 0px 0px;
 }
 .overlay__img {
   width: 100px;
   height: 100px;
-  margin-right: 70px;
-  margin-top: 15px;
+  margin: 40px 90px 0px 0px;
 }
 .overlay__btnbox {
   display: flex;
   flex-direction: row;
+  margin: 0px 70px 0px 0px;
+  gap: 5px;
 }
 .overlay__btnbox--btn {
   width: 90px;
@@ -133,10 +143,25 @@ img {
   padding: 2px;
 }
 
-.weapons {
+.notebookOverlay {
+  display: none;
+  width: 400px;
+  height: 400px;
+  background-color: beige;
   position: absolute;
-  width: 0px;
-  height: 0px;
+}
+.notebookOverlay__title {
+  text-decoration: underline;
+}
+.notebookOverlay__bulletPts {
+  font-size: large;
+}
+.notebookOverlay__addNote--box {
+  height: 200px;
+  width: 200px;
+}
+.notebookOverlay__addNote--btn {
+  padding: 5%;
 }
 
 /*# sourceMappingURL=style.css.map */

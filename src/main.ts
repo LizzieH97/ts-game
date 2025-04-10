@@ -18,6 +18,7 @@ import {
   bell,
 } from "../assets/weapons";
 
+//defining
 const background = document.querySelector<HTMLElement>(".background");
 const board = document.querySelector<HTMLUListElement>(".board");
 const boardPieces = document.querySelectorAll<HTMLLIElement>(".board__piece");
@@ -35,7 +36,16 @@ const moreClues = document.querySelectorAll<HTMLButtonElement>(
   ".overlay__btnbox--btn"
 );
 const closeBtn = document.querySelector<HTMLButtonElement>(".overlay__close");
-const weaponsMap: Record<string, { initial: string; closer: string }> = {
+const notebook = document.querySelector<HTMLDivElement>(".notebookOverlay");
+const notebookBtn =
+  document.querySelector<HTMLButtonElement>(".header__notebook");
+const notebookWriting = document.querySelector<HTMLUListElement>(
+  ".notebookOverlay__bulletPts"
+);
+const weaponsMap: Record<
+  string,
+  { initial: string; closer: string; under: string }
+> = {
   bucket,
   chair,
   rope,
@@ -56,6 +66,7 @@ const peopleMap: Record<
   tom,
   tessa,
 };
+//dealing with errors
 if (
   !board ||
   !boardPieces ||
@@ -64,12 +75,18 @@ if (
   !closeBtn ||
   !cluesBox ||
   !icon ||
-  !moreCluesBox
+  !moreCluesBox ||
+  !notebook ||
+  !notebookBtn ||
+  !notebookWriting
 ) {
   throw new Error("Something went wrong! ");
 }
 
+//random little background thing idk
 board.style.background = "url('/background.jpg')";
+
+//functions to handle buttons
 const handlePersonClick = (event: Event) => {
   if (!clues || !event.currentTarget) {
     throw new Error("Something went wrong! ");
@@ -117,16 +134,24 @@ const handleMoreClues = (event: Event) => {
   if (clue.id === "btn-1") {
     clues.innerText = "";
     selectedPerson
-      ? (clues.innerText = selectedPerson.accusation)
+      ? (clues.innerText = selectedPerson.alibi)
       : (clues.innerText = selectedWeapon.closer);
   }
   if (clue.id === "btn-2") {
     clues.innerText = "";
     selectedPerson
       ? (clues.innerText = selectedPerson.accusation)
-      : (clues.innerText = selectedWeapon.closer);
+      : (clues.innerText = selectedWeapon.under);
   }
 };
+
+const handleNotebookBtnClick = (event: Event) => {
+  event.preventDefault();
+  notebook.style.display = "flex";
+  console.log(notebookWriting);
+};
+
+//event listeners
 people.forEach((person) => person.addEventListener("click", handlePersonClick));
 
 weapons.forEach((weapon) =>
@@ -141,3 +166,4 @@ closeBtn.addEventListener("click", () => {
 moreClues.forEach((clue) => {
   clue.addEventListener("click", handleMoreClues);
 });
+notebookBtn.addEventListener("click", handleNotebookBtnClick);
