@@ -41,6 +41,7 @@ img {
   font-weight: bolder;
   color: white;
   padding: 5%;
+  border-radius: 10px;
 }
 .header__notebook {
   grid-column: 1;
@@ -56,6 +57,7 @@ img {
   font-weight: bolder;
   color: white;
   padding: 2%;
+  border-radius: 10px;
 }
 
 .board {
@@ -120,6 +122,7 @@ img {
   margin: 10px 90px 0px 0px;
   width: 50px;
   height: 30px;
+  border-radius: 10px;
 }
 .overlay__text {
   width: 300px;
@@ -141,13 +144,18 @@ img {
   width: 90px;
   height: 40px;
   padding: 2px;
+  border-radius: 10px;
 }
 
 .notebookOverlay {
   display: none;
   width: 400px;
   height: 400px;
-  background-color: beige;
+  background-image: url("/page.png");
+  background-size: cover;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: absolute;
 }
 .notebookOverlay__title {
@@ -156,12 +164,21 @@ img {
 .notebookOverlay__bulletPts {
   font-size: large;
 }
-.notebookOverlay__addNote--box {
-  height: 200px;
+.notebookOverlay__addNote--input {
+  height: 100px;
   width: 200px;
+  border-radius: 20px;
 }
 .notebookOverlay__addNote--btn {
   padding: 5%;
+  border-radius: 10px;
+}
+.notebookOverlay__close {
+  padding: 5px;
+  margin: 10px 90px 0px 0px;
+  width: 50px;
+  height: 30px;
+  border-radius: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -17,23 +17,27 @@
           <div class="overlay__btnbox" id="">
             <button class="overlay__btnbox--btn" id="btn-1"></button>
             <button class="overlay__btnbox--btn" id="btn-2"></button>
+            <button class="overlay__btnbox--btn" id="post-to-notepad">
+              Post to notepad
+            </button>
           </div>
           <button class="overlay__close">Close</button>
         </div>
         <div class="notebookOverlay">
           <h3 class="notebookOverlay__title">My Notes</h3>
           <ul class="notebookOverlay__bulletPts"></ul>
-          <form class="notebookOverlay__addNote" action="post">
+          <form class="notebookOverlay__addNote">
             <input
               type="text"
               name="note"
               placeholder="Write your notes here..."
-              class="notebookOverlay__addNote--box"
+              class="notebookOverlay__addNote--input"
             />
             <button type="submit" class="notebookOverlay__addNote--btn">
               Post
             </button>
           </form>
+          <button class="notebookOverlay__close">Close</button>
         </div>
 
         <div class="header">

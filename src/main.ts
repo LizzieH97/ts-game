@@ -35,16 +35,27 @@ const moreCluesBox = document.querySelector<HTMLDivElement>(".overlay__btnbox");
 const moreClues = document.querySelectorAll<HTMLButtonElement>(
   ".overlay__btnbox--btn"
 );
-const closeBtn = document.querySelector<HTMLButtonElement>(".overlay__close");
+const cluesCloseBtn =
+  document.querySelector<HTMLButtonElement>(".overlay__close");
 const notebook = document.querySelector<HTMLDivElement>(".notebookOverlay");
-const notebookBtn =
+const notebookOpenBtn =
   document.querySelector<HTMLButtonElement>(".header__notebook");
 const notebookWriting = document.querySelector<HTMLUListElement>(
   ".notebookOverlay__bulletPts"
 );
+const addNewNoteForm = document.querySelector<HTMLFormElement>(
+  ".notebookOverlay__addNote"
+);
+const noteInput = document.querySelector<HTMLInputElement>(
+  ".notebookOverlay__addNote--input"
+);
+const notebookCloseBtn = document.querySelector<HTMLButtonElement>(
+  ".notebookOverlay__close"
+);
+
 const weaponsMap: Record<
   string,
-  { initial: string; closer: string; under: string }
+  { initial: string; closer: string; under: string; summary: string }
 > = {
   bucket,
   chair,
@@ -56,7 +67,7 @@ const weaponsMap: Record<
 };
 const peopleMap: Record<
   string,
-  { initial: string; alibi: string; accusation: string }
+  { initial: string; alibi: string; accusation: string; summary: string }
 > = {
   angela,
   george,
@@ -72,21 +83,25 @@ if (
   !boardPieces ||
   !background ||
   !clues ||
-  !closeBtn ||
+  !cluesCloseBtn ||
   !cluesBox ||
   !icon ||
   !moreCluesBox ||
   !notebook ||
-  !notebookBtn ||
-  !notebookWriting
+  !notebookOpenBtn ||
+  !notebookWriting ||
+  !addNewNoteForm ||
+  !noteInput ||
+  !notebookCloseBtn
 ) {
   throw new Error("Something went wrong! ");
 }
 
 //random little background thing idk
-board.style.background = "url('/background.jpg')";
 
 //functions to handle buttons
+board.style.background = "url('/background.jpg')";
+
 const handlePersonClick = (event: Event) => {
   if (!clues || !event.currentTarget) {
     throw new Error("Something went wrong! ");
@@ -105,6 +120,7 @@ const handlePersonClick = (event: Event) => {
   moreClues[0].innerText = "Where were you at 3pm?";
   moreClues[1].innerText = "Who do you think it was?";
 };
+
 const handleWeaponClick = (event: Event) => {
   if (!clues || !event.currentTarget) {
     throw new Error("Something went wrong! ");
@@ -123,6 +139,7 @@ const handleWeaponClick = (event: Event) => {
   moreClues[0].innerText = "Inspect closer";
   moreClues[1].innerText = "Look underneath";
 };
+
 const handleMoreClues = (event: Event) => {
   const clue = event.currentTarget as HTMLElement;
   if (!clue.parentElement) {
@@ -143,22 +160,43 @@ const handleMoreClues = (event: Event) => {
       ? (clues.innerText = selectedPerson.accusation)
       : (clues.innerText = selectedWeapon.under);
   }
+  if (clue.id === "post-to-notepad") {
+    const bulletPoint = selectedPerson
+      ? selectedPerson.summary
+      : selectedWeapon.summary;
+    const bulletPointAndBtn = document.createElement("li");
+    bulletPointAndBtn.innerHTML = `${bulletPoint} <button class="deleteText">Delete</button>`;
+    notebookWriting.appendChild(bulletPointAndBtn);
+    noteInput.value = "";
+  }
 };
 
-const handleNotebookBtnClick = (event: Event) => {
+const handleNotebookOpenBtnClick = (event: Event) => {
   event.preventDefault();
   notebook.style.display = "flex";
-  console.log(notebookWriting);
 };
 
-//event listeners
+const handleAddNoteSubmit = (event: Event) => {
+  event.preventDefault();
+  const bulletPoint = noteInput.value;
+  if (!bulletPoint) return;
+  const bulletPointAndBtn = document.createElement("li");
+  bulletPointAndBtn.innerHTML = `${bulletPoint} <button class="deleteText">Delete</button>`;
+  notebookWriting.appendChild(bulletPointAndBtn);
+  noteInput.value = "";
+};
+const handleNotebookClose = (event: Event) => {
+  event.preventDefault();
+  notebook.style.display = "none";
+};
+
 people.forEach((person) => person.addEventListener("click", handlePersonClick));
 
 weapons.forEach((weapon) =>
   weapon.addEventListener("click", handleWeaponClick)
 );
 
-closeBtn.addEventListener("click", () => {
+cluesCloseBtn.addEventListener("click", () => {
   clues.innerText = "";
   moreCluesBox.id = "";
   cluesBox.style.display = "none";
@@ -166,4 +204,16 @@ closeBtn.addEventListener("click", () => {
 moreClues.forEach((clue) => {
   clue.addEventListener("click", handleMoreClues);
 });
-notebookBtn.addEventListener("click", handleNotebookBtnClick);
+notebookOpenBtn.addEventListener("click", handleNotebookOpenBtnClick);
+addNewNoteForm.addEventListener("submit", handleAddNoteSubmit);
+notebookCloseBtn?.addEventListener("click", handleNotebookClose);
+notebookWriting.addEventListener("click", (event: Event) => {
+  const target = event.target as HTMLElement;
+
+  if (target.classList.contains("deleteText")) {
+    const listItem = target.closest("li");
+    if (listItem) {
+      listItem.remove();
+    }
+  }
+});
