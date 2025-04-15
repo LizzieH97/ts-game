@@ -97,11 +97,6 @@ if (
   throw new Error("Something went wrong! ");
 }
 
-//random little background thing idk
-
-//functions to handle buttons
-board.style.background = "url('/background.jpg')";
-
 const handlePersonClick = (event: Event) => {
   if (!clues || !event.currentTarget) {
     throw new Error("Something went wrong! ");
@@ -113,12 +108,59 @@ const handlePersonClick = (event: Event) => {
   icon.src = `/${person.id}.png`;
 
   const selectedPerson = peopleMap[personID];
-  if (selectedPerson) {
-    clues.innerText += selectedPerson.initial;
-  }
 
-  moreClues[0].innerText = "Where were you at 3pm?";
-  moreClues[1].innerText = "Who do you think it was?";
+  if (selectedPerson) {
+    //   const typeWriter = (fullText: string) => {
+    //     if (fullText) {
+    //       for (let i = 0; i < fullText.length; i++) {
+    //         const char = fullText.charAt(i);
+    //         if (char === "\n") {
+    //           clues.innerHTML += "<br>";
+    //         } else {
+    //           clues.innerHTML += char;
+    //         }
+    //       }
+
+    //       setTimeout(typeWriter, 40); // typing speed
+    //     }
+    //   };
+    //   typeWriter(selectedPerson.initial);
+    // }
+    let i = 0;
+    let iTextPos = 0;
+    let iScrollAt = 20;
+    let iSpeed = 50;
+    let clueText: string[] = [];
+
+    const typewriter = () => {
+      if (!clues) {
+        throw new Error("Clue element not found");
+      }
+
+      let sentText = "";
+      let iRow = Math.max(0, i - iScrollAt);
+
+      while (iRow < i) {
+        sentText += clueText[iRow++] + "<br />";
+      }
+
+      clues.innerHTML = sentText + clueText[i].substring(0, iTextPos) + "_";
+
+      if (iTextPos++ < clueText[i].length) {
+        setTimeout(typewriter, iSpeed);
+      } else {
+        iTextPos = 0;
+        i++;
+        if (i < clueText.length) {
+          setTimeout(typewriter, 100);
+        }
+      }
+    };
+    clueText = selectedPerson.initial.split("\n"); // for multiline input
+    typewriter();
+    moreClues[0].innerText = "Where were you at 3pm?";
+    moreClues[1].innerText = "Who do you think it was?";
+  }
 };
 
 const handleWeaponClick = (event: Event) => {

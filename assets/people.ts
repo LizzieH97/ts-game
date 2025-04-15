@@ -1,12 +1,8 @@
 export const angela = {
-  initial:
-    "Oh my gosh, this whole trip is terrible. I can't believe she's gone. Poor Liam - he's just lost his fiancee jsut as she was about to be his wife. My heart breaks for him. We've been through so much together, but I never thought we'd have to go through this.",
-  alibi:
-    "I was sitting in the bar with Liam at 3pm, looking out at the back deck. We were having a good time, looking through old photos and listening to the music that was playing. There was a song playing, I don't remember what it was, but it was what me and Liam used to listen to when we were at University together.",
-  accusation:
-    "If you were to ask me, I would say Tom. He's always been obsessed with Tessa, and I know he rubbed Liam up the wrong way. He used to suspect that there was something going on between them.",
-  summary:
-    "Angela: A close friend of Liam. She was in the bar at 3pm with Liam, facing the back deck. She accuses Tom, due to his obsessions with Tessa.",
+  initial: `Oh my gosh, this whole trip is terrible. I can't believe she's gone. \n Poor Liam - he's just lost his fiancee \njust as she was about to be his wife.\n My heart breaks for him. We've been \n through so much together, \n but I never thought we'd have to go \n through this.`,
+  alibi: `I was sitting in the bar with Liam at \n 3pm, looking out at the back deck. \n We were having a good time, looking \n through old photos and listening \n to the music that was playing. \n There was a song playing, \n I don't remember what it was, but it \n was what me and Liam used to \n listen to when we were at University together.`,
+  accusation: `If you were to ask me, I would say Tom. \n He's always been obsessed with Tessa, \n and I know he rubbed Liam up the wrong way. \n He used to suspect that there was something going on \n between them.`,
+  summary: `Angela: A close friend of Liam. She was in the bar at 3pm with Liam, facing the back deck. She accuses Tom, due to his obsessions with Tessa.`,
 };
 export const george = {
   initial:
