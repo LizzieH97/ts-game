@@ -3,6 +3,11 @@ img {
   height: 70px;
 }
 
+h4 {
+  font-size: large;
+  margin: 0px;
+}
+
 .background {
   width: 800px;
   height: 700px;
@@ -100,6 +105,10 @@ img {
   background-size: cover;
   padding: 0px;
   margin: 0px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  justify-content: flex-end;
 }
 
 .overlay {
@@ -127,13 +136,13 @@ img {
   border-radius: 10px;
 }
 .overlay__text {
-  width: 300px;
+  width: 370px;
+  height: 200px;
   font-size: larger;
   margin: 0px 70px 0px 0px;
   display: flex;
   flex-flow: column;
   overflow: hidden;
-  transform: translateY(-50%);
   white-space: nowrap;
 }
 .overlay__img {
@@ -154,22 +163,6 @@ img {
   border-radius: 10px;
 }
 
-@keyframes typewriter {
-  from {
-    width: 0;
-  }
-  to {
-    width: 24em;
-  }
-}
-@keyframes blinkTextCursor {
-  from {
-    border-right-color: rgba(255, 255, 255, 0.75);
-  }
-  to {
-    border-right-color: transparent;
-  }
-}
 .notebookOverlay {
   display: none;
   width: 400px;
@@ -202,6 +195,14 @@ img {
   width: 50px;
   height: 30px;
   border-radius: 10px;
+}
+
+.captainOverlay {
+  display: none;
+  width: 800px;
+  height: 700px;
+  position: absolute;
+  background-color: azure;
 }
 
 /*# sourceMappingURL=style.css.map */

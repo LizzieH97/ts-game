@@ -17,6 +17,7 @@ import {
   barrel,
   bell,
 } from "../assets/weapons";
+import { startTypewriter } from "../assets/typewriter";
 
 //defining
 const background = document.querySelector<HTMLElement>(".background");
@@ -40,6 +41,8 @@ const cluesCloseBtn =
 const notebook = document.querySelector<HTMLDivElement>(".notebookOverlay");
 const notebookOpenBtn =
   document.querySelector<HTMLButtonElement>(".header__notebook");
+const captainOpenBtn =
+  document.querySelector<HTMLButtonElement>(".header__captain");
 const notebookWriting = document.querySelector<HTMLUListElement>(
   ".notebookOverlay__bulletPts"
 );
@@ -52,6 +55,7 @@ const noteInput = document.querySelector<HTMLInputElement>(
 const notebookCloseBtn = document.querySelector<HTMLButtonElement>(
   ".notebookOverlay__close"
 );
+const captainScene = document.querySelector<HTMLDivElement>(".captainOverlay");
 
 const weaponsMap: Record<
   string,
@@ -92,7 +96,9 @@ if (
   !notebookWriting ||
   !addNewNoteForm ||
   !noteInput ||
-  !notebookCloseBtn
+  !notebookCloseBtn ||
+  !captainOpenBtn ||
+  !captainScene
 ) {
   throw new Error("Something went wrong! ");
 }
@@ -110,54 +116,9 @@ const handlePersonClick = (event: Event) => {
   const selectedPerson = peopleMap[personID];
 
   if (selectedPerson) {
-    //   const typeWriter = (fullText: string) => {
-    //     if (fullText) {
-    //       for (let i = 0; i < fullText.length; i++) {
-    //         const char = fullText.charAt(i);
-    //         if (char === "\n") {
-    //           clues.innerHTML += "<br>";
-    //         } else {
-    //           clues.innerHTML += char;
-    //         }
-    //       }
+    clues.innerText = "";
+    startTypewriter({ text: selectedPerson.initial, clues: clues });
 
-    //       setTimeout(typeWriter, 40); // typing speed
-    //     }
-    //   };
-    //   typeWriter(selectedPerson.initial);
-    // }
-    let i = 0;
-    let iTextPos = 0;
-    let iScrollAt = 20;
-    let iSpeed = 50;
-    let clueText: string[] = [];
-
-    const typewriter = () => {
-      if (!clues) {
-        throw new Error("Clue element not found");
-      }
-
-      let sentText = "";
-      let iRow = Math.max(0, i - iScrollAt);
-
-      while (iRow < i) {
-        sentText += clueText[iRow++] + "<br />";
-      }
-
-      clues.innerHTML = sentText + clueText[i].substring(0, iTextPos) + "_";
-
-      if (iTextPos++ < clueText[i].length) {
-        setTimeout(typewriter, iSpeed);
-      } else {
-        iTextPos = 0;
-        i++;
-        if (i < clueText.length) {
-          setTimeout(typewriter, 100);
-        }
-      }
-    };
-    clueText = selectedPerson.initial.split("\n"); // for multiline input
-    typewriter();
     moreClues[0].innerText = "Where were you at 3pm?";
     moreClues[1].innerText = "Who do you think it was?";
   }
@@ -175,7 +136,7 @@ const handleWeaponClick = (event: Event) => {
 
   const selectedPerson = weaponsMap[weaponID];
   if (selectedPerson) {
-    clues.innerText += selectedPerson.initial;
+    startTypewriter({ text: selectedPerson.initial, clues: clues });
   }
 
   moreClues[0].innerText = "Inspect closer";
@@ -193,14 +154,14 @@ const handleMoreClues = (event: Event) => {
   if (clue.id === "btn-1") {
     clues.innerText = "";
     selectedPerson
-      ? (clues.innerText = selectedPerson.alibi)
-      : (clues.innerText = selectedWeapon.closer);
+      ? startTypewriter({ text: selectedPerson.alibi, clues: clues })
+      : startTypewriter({ text: selectedWeapon.closer, clues: clues });
   }
   if (clue.id === "btn-2") {
     clues.innerText = "";
     selectedPerson
-      ? (clues.innerText = selectedPerson.accusation)
-      : (clues.innerText = selectedWeapon.under);
+      ? startTypewriter({ text: selectedPerson.accusation, clues: clues })
+      : startTypewriter({ text: selectedWeapon.under, clues: clues });
   }
   if (clue.id === "post-to-notepad") {
     const bulletPoint = selectedPerson
@@ -231,6 +192,12 @@ const handleNotebookClose = (event: Event) => {
   event.preventDefault();
   notebook.style.display = "none";
 };
+const handleCaptainSceneOpen = (event: Event) => {
+  event.preventDefault();
+  captainScene.style.display = "flex";
+};
+
+// event listeners
 
 people.forEach((person) => person.addEventListener("click", handlePersonClick));
 
@@ -251,7 +218,7 @@ addNewNoteForm.addEventListener("submit", handleAddNoteSubmit);
 notebookCloseBtn?.addEventListener("click", handleNotebookClose);
 notebookWriting.addEventListener("click", (event: Event) => {
   const target = event.target as HTMLElement;
-
+  //trying to remove one bullet point of text?? closest??
   if (target.classList.contains("deleteText")) {
     const listItem = target.closest("li");
     if (listItem) {
@@ -259,3 +226,4 @@ notebookWriting.addEventListener("click", (event: Event) => {
     }
   }
 });
+captainOpenBtn?.addEventListener("click", handleCaptainSceneOpen);

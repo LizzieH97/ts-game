@@ -2,6 +2,10 @@ img {
   width: 70px;
   height: 70px;
 }
+h4 {
+  font-size: large;
+  margin: 0px;
+}
 .background {
   width: 800px;
   height: 700px;
@@ -97,6 +101,10 @@ img {
       background-size: cover;
       padding: 0px;
       margin: 0px;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      justify-content: flex-end;
     }
   }
 }
@@ -124,17 +132,14 @@ img {
     border-radius: 10px;
   }
   &__text {
-    width: 300px;
+    width: 370px;
+    height: 200px;
     font-size: larger;
     margin: 0px 70px 0px 0px;
     display: flex;
     flex-flow: column;
-
     overflow: hidden;
-    transform: translateY(-50%);
     white-space: nowrap;
-    // animation: typewriter 4s steps(44) 1s 1 normal both,
-    //   blinkTextCursor 500ms steps(44) infinite normal;
   }
   &__img {
     width: 100px;
@@ -153,22 +158,6 @@ img {
       padding: 2px;
       border-radius: 10px;
     }
-  }
-}
-@keyframes typewriter {
-  from {
-    width: 0;
-  }
-  to {
-    width: 24em;
-  }
-}
-@keyframes blinkTextCursor {
-  from {
-    border-right-color: rgba(255, 255, 255, 0.75);
-  }
-  to {
-    border-right-color: transparent;
   }
 }
 
@@ -207,4 +196,11 @@ img {
     height: 30px;
     border-radius: 10px;
   }
+}
+.captainOverlay {
+  display: none;
+  width: 800px;
+  height: 700px;
+  position: absolute;
+  background-color: azure;
 }
