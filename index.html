@@ -39,7 +39,41 @@
           </form>
           <button class="notebookOverlay__close">Close</button>
         </div>
-        <div class="captainOverlay">This is the captain overlay</div>
+        <div class="captainOverlay">
+          <div class="captainOverlay__initial">
+            <p class="captainOverlay__initial--text">Okay, what do you need?</p>
+            <img src="/captain.png" class="captainOverlay__initial--img" />
+            <button class="captainOverlay__initial--btn" id="moreInfo">
+              I need some info!
+            </button>
+            <button class="captainOverlay__initial--btn" id="final">
+              I know who did it!
+            </button>
+          </div>
+          <div class="captainOverlay__info">
+            Click on the people to hear their testimonies, or click on a weapon
+            to inspect it. There are some more options underneath if you need to
+            hear some more. Once you think you know who murdered Tessa, click on
+            the other button on this screen.
+            <button class="captainOverlay__info--close">Back</button>
+          </div>
+          <div class="captainOverlay__final">
+            So who did it?
+            <form>
+              <label for="suspects">Choose a suspect</label>
+              <select name="suspects">
+                <option value="angela">Angela</option>
+                <option value="george">George</option>
+                <option value="liam">Liam</option>
+                <option value="olivia">Olivia</option>
+                <option value="rachel">Rachel</option>
+                <option value="tom">Tom</option>
+                <option value="tessa">Tessa</option>
+              </select>
+            </form>
+          </div>
+          <button class="captainOverlay__close">Close</button>
+        </div>
         <div class="header">
           <div class="header__notebook">
             <img src="/notepad.png" class="header__notebook--img" />

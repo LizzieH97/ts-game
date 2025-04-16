@@ -1,0 +1,20 @@
+@mixin btn-small {
+  width: 90px;
+  height: 40px;
+  padding: 2px;
+  border-radius: 10px;
+}
+@mixin btn-big {
+  width: 100px;
+  height: 50px;
+  padding: 2px;
+  font-size: large;
+  border-radius: 20px;
+}
+@mixin btn-x-small {
+  padding: 5px;
+  margin: 10px 90px 0px 0px;
+  width: 50px;
+  height: 30px;
+  border-radius: 10px;
+}

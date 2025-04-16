@@ -55,8 +55,23 @@ const noteInput = document.querySelector<HTMLInputElement>(
 const notebookCloseBtn = document.querySelector<HTMLButtonElement>(
   ".notebookOverlay__close"
 );
-const captainScene = document.querySelector<HTMLDivElement>(".captainOverlay");
-
+const captainOverlay =
+  document.querySelector<HTMLDivElement>(".captainOverlay");
+const captainCloseBtn = document.querySelector<HTMLButtonElement>(
+  ".captainOverlay__close"
+);
+const captainInitialScr = document.querySelector<HTMLDivElement>(
+  ".captainOverlay__initial"
+);
+const captainOptionsBtn = document.querySelectorAll<HTMLButtonElement>(
+  ".captainOverlay__initial--btn"
+);
+const captainBackBtn = document.querySelector<HTMLButtonElement>(
+  ".captainOverlay__info--close"
+);
+const captainInfoScr = document.querySelector<HTMLDivElement>(
+  ".captainOverlay__info"
+);
 const weaponsMap: Record<
   string,
   { initial: string; closer: string; under: string; summary: string }
@@ -98,7 +113,11 @@ if (
   !noteInput ||
   !notebookCloseBtn ||
   !captainOpenBtn ||
-  !captainScene
+  !captainOverlay ||
+  !captainCloseBtn ||
+  !captainInitialScr ||
+  !captainInfoScr ||
+  !captainBackBtn
 ) {
   throw new Error("Something went wrong! ");
 }
@@ -173,7 +192,12 @@ const handleMoreClues = (event: Event) => {
     noteInput.value = "";
   }
 };
-
+const handleCluesClose = (event: Event) => {
+  event.preventDefault();
+  clues.innerText = "";
+  moreCluesBox.id = "";
+  cluesBox.style.display = "none";
+};
 const handleNotebookOpenBtnClick = (event: Event) => {
   event.preventDefault();
   notebook.style.display = "flex";
@@ -192,11 +216,32 @@ const handleNotebookClose = (event: Event) => {
   event.preventDefault();
   notebook.style.display = "none";
 };
-const handleCaptainSceneOpen = (event: Event) => {
+const handleCaptainOpen = (event: Event) => {
   event.preventDefault();
-  captainScene.style.display = "flex";
+  captainOverlay.style.display = "grid";
+  captainInitialScr.style.display = "grid";
+};
+const handleCaptainClose = (event: Event) => {
+  event.preventDefault();
+  captainOverlay.style.display = "none";
+  captainInfoScr.style.display = "none";
+};
+const handleCaptainOptions = (event: Event) => {
+  event.preventDefault();
+  if (event.target) {
+    const btn = event.currentTarget as HTMLElement;
+    captainInitialScr.style.display = "none";
+    btn.id === "moreInfo"
+      ? (captainInfoScr.style.display = "flex")
+      : console.log("second option", btn);
+  }
 };
 
+const handleCaptainBack = (event: Event) => {
+  event.preventDefault();
+  captainInfoScr.style.display = "none";
+  captainInitialScr.style.display = "grid";
+};
 // event listeners
 
 people.forEach((person) => person.addEventListener("click", handlePersonClick));
@@ -205,11 +250,7 @@ weapons.forEach((weapon) =>
   weapon.addEventListener("click", handleWeaponClick)
 );
 
-cluesCloseBtn.addEventListener("click", () => {
-  clues.innerText = "";
-  moreCluesBox.id = "";
-  cluesBox.style.display = "none";
-});
+cluesCloseBtn.addEventListener("click", handleCluesClose);
 moreClues.forEach((clue) => {
   clue.addEventListener("click", handleMoreClues);
 });
@@ -226,4 +267,9 @@ notebookWriting.addEventListener("click", (event: Event) => {
     }
   }
 });
-captainOpenBtn?.addEventListener("click", handleCaptainSceneOpen);
+captainOpenBtn?.addEventListener("click", handleCaptainOpen);
+captainCloseBtn.addEventListener("click", handleCaptainClose);
+captainOptionsBtn.forEach((btn) => {
+  btn.addEventListener("click", handleCaptainOptions);
+});
+captainBackBtn.addEventListener("click", handleCaptainBack);
