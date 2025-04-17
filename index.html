@@ -2,21 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/ts-game/vite.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet"
     />
-    <link href="./src/style.css" rel="stylesheet" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Murder Mystery</title>
+    <script type="module" crossorigin src="/ts-game/assets/index-B5trKDVe.js"></script>
+    <link rel="stylesheet" crossorigin href="/ts-game/assets/index-BuVWebXA.css">
   </head>
   <body>
     <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
     <main>
       <section class="background">
         <section id="overlays">
@@ -73,7 +73,7 @@
                 Okay, what do you need?
               </p>
               <img
-                src="./public/captain.png"
+                src="/ts-game/assets/captain-Cn-JVcTs.png"
                 class="captainOverlay__initial--img"
               />
               <button class="captainOverlay__initial--btn" id="moreInfo">
@@ -85,7 +85,7 @@
             </div>
             <div class="captainOverlay__info">
               <img
-                src="./public/captain.png"
+                src="/ts-game/assets/captain-Cn-JVcTs.png"
                 class="captainOverlay__info--img"
               />
               <p class="captainOverlay__info--text">
@@ -99,7 +99,7 @@
             </div>
             <div class="captainOverlay__final">
               <img
-                src="./public/captain.png"
+                src="/ts-game/assets/captain-Cn-JVcTs.png"
                 class="captainOverlay__final--img"
               />
               <h3 class="captainOverlay__final--title">So what happened?</h3>
@@ -149,12 +149,12 @@
         </section>
         <div class="header">
           <div class="header__notebook">
-            <img src="./public/notepad.png" class="header__notebook--img" />
+            <img src="/ts-game/assets/notepad-BMgVKAy8.png" class="header__notebook--img" />
             <button class="header__notebook--btn">Detective's Notebook</button>
           </div>
           <div class="header__captain">
             <img
-              src="./public/captain.png"
+              src="/ts-game/assets/captain-Cn-JVcTs.png"
               class="header__captain--img"
             /><button class="header__captain--btn">Speak to the Captain</button>
           </div>
@@ -163,14 +163,14 @@
         <ul class="board">
           <li class="board__piece">
             <button class="board__piece--tool" id="bucket">
-              <img src="./public/bucket.png" />
+              <img src="/ts-game/assets/bucket-BXOpo_qH.png" />
             </button>
           </li>
           <li class="board__piece">
             <button
               class="board__piece--person"
               id="liam"
-              style="background-image: url('./public/liam.png')"
+              style="background-image: url('/ts-game/assets/liam-BZxi5ZOu.png')"
             >
               <h4
                 style="
@@ -188,18 +188,18 @@
             <button
               class="board__piece--tool"
               id="chair"
-              style="background-image: url('./public/chair.png')"
+              style="background-image: url('/ts-game/assets/chair-BdzJD4SV.png')"
             ></button>
           </li>
 
           <li class="board__piece">
             <button class="board__piece--tool" id="rope">
-              <img src="./public/rope.png" />
+              <img src="/ts-game/assets/rope-q0yBKgtq.png" />
             </button>
           </li>
           <li class="board__piece">
             <button class="board__piece--tool" id="bell">
-              <img src="./public/bell.png" />
+              <img src="/ts-game/assets/bell-DTwThho9.png" />
             </button>
           </li>
           <li class="board__piece"></li>
@@ -207,7 +207,7 @@
             <button
               class="board__piece--person"
               id="olivia"
-              style="background-image: url('./public/olivia.png')"
+              style="background-image: url('/ts-game/assets/olivia-CuiCFPpX.png')"
             >
               <h4
                 style="
@@ -224,7 +224,7 @@
             <button
               class="board__piece--person"
               id="tom"
-              style="background-image: url('./public/tom.png')"
+              style="background-image: url('/ts-game/assets/tom-NXHPbXoz.png')"
             >
               <h4
                 style="
@@ -243,13 +243,13 @@
             <button
               class="board__piece--tool"
               id="chair2"
-              style="background-image: url('./public/chair.png')"
+              style="background-image: url('/ts-game/assets/chair-BdzJD4SV.png')"
             ></button>
           </li>
           <li class="board__piece">
             <button class="board__piece--person" id="tessa">
               <img
-                src="./public/tessa.png"
+                src="/ts-game/assets/tessa-BTdoQ7J8.png"
                 style="padding: 10px 0px 0px 10px"
               />
             </button>
@@ -259,7 +259,7 @@
               class="board__piece--person"
               style="
                 padding-left: 10px;
-                background-image: url('./public/rachel.png');
+                background-image: url('/ts-game/assets/rachel-BMruQ-PM.png');
               "
               id="rachel"
             >
@@ -281,19 +281,19 @@
           <li class="board__piece"></li>
           <li class="board__piece">
             <button class="board__piece--tool" id="extinguisher">
-              <img src="./public/extinguisher.png" />
+              <img src="/ts-game/assets/extinguisher-DNFW7IDX.png" />
             </button>
           </li>
           <li class="board__piece">
             <button class="board__piece--tool" id="barrel">
-              <img src="./public/barrel.png" />
+              <img src="/ts-game/assets/barrel-dSlmg14C.png" />
             </button>
           </li>
           <li class="board__piece">
             <button
               class="board__piece--person"
               id="angela"
-              style="background-image: url('./public/angela.png')"
+              style="background-image: url('/ts-game/assets/angela-CPQP5Ump.png')"
             >
               <h4
                 style="
@@ -310,7 +310,7 @@
             <button
               class="board__piece--person"
               id="george"
-              style="background-image: url('./public/george.png')"
+              style="background-image: url('/ts-game/assets/george-WC-m9MXy.png')"
             >
               <h4
                 style="
