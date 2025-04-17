@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/ts-game/vite.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Murder Mystery</title>
+    <script type="module" crossorigin src="/ts-game/assets/index-B5trKDVe.js"></script>
+    <link rel="stylesheet" crossorigin href="/ts-game/assets/index-BuVWebXA.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <main>
+      <section class="background">
+        <section id="overlays">
+          <div class="openingScreen">
+            <h2 class="openingScreen__title">
+              Thank god you're here detective, there's been a murder!
+            </h2>
+            <p class="openingScreen__text">
+              Tessa had booked a three-day cruise with her fiance, Liam, to
+              celebrate their wedding next week. They invited their closest
+              friends and some family members. They were on the second day of
+              the cruise, and at 3:10pm, a crew member (George) came into the
+              bar and shouted he had found a body. Everyone ran onto the front
+              deck and discovered that Tessa had been murdered. She has a large
+              wound on the back of her skull, and there is a large amount of
+              blood surrounding her. You deduce that her time of death was 3pm,
+              but you have no idea who it was or what was used to kill her. It's
+              now 5pm. You'll have to do some digging, interview the other
+              guests on the boat and inspect the items on the deck.
+            </p>
+            <button class="openingScreen__btn">Let's get started!</button>
+          </div>
+          <div class="cluesOverlay">
+            <img class="cluesOverlay__img" src="" />
+            <p class="cluesOverlay__text"></p>
+            <div class="cluesOverlay__btnbox" id="">
+              <button class="cluesOverlay__btnbox--btn" id="btn-1"></button>
+              <button class="cluesOverlay__btnbox--btn" id="btn-2"></button>
+              <button class="cluesOverlay__btnbox--btn" id="post-to-notepad">
+                Post to notepad
+              </button>
+            </div>
+            <button class="cluesOverlay__close">Close</button>
+          </div>
+          <div class="notebookOverlay">
+            <h3 class="notebookOverlay__title">My Notes</h3>
+            <ul class="notebookOverlay__bulletPts"></ul>
+            <form class="notebookOverlay__addNote">
+              <input
+                type="text"
+                name="note"
+                placeholder="Write your notes here..."
+                class="notebookOverlay__addNote--input"
+              />
+              <button type="submit" class="notebookOverlay__addNote--btn">
+                Post
+              </button>
+            </form>
+            <button class="notebookOverlay__close">Close</button>
+          </div>
+          <div class="captainOverlay">
+            <div class="captainOverlay__initial">
+              <p class="captainOverlay__initial--text">
+                Okay, what do you need?
+              </p>
+              <img
+                src="/ts-game/assets/captain-Cn-JVcTs.png"
+                class="captainOverlay__initial--img"
+              />
+              <button class="captainOverlay__initial--btn" id="moreInfo">
+                I need some info!
+              </button>
+              <button class="captainOverlay__initial--btn" id="final">
+                I know who did it!
+              </button>
+            </div>
+            <div class="captainOverlay__info">
+              <img
+                src="/ts-game/assets/captain-Cn-JVcTs.png"
+                class="captainOverlay__info--img"
+              />
+              <p class="captainOverlay__info--text">
+                Click on the people to hear their testimonies, or click on a
+                weapon to inspect it. There are some more options underneath if
+                you need to hear some more. Once you think you know who murdered
+                Tessa, click on the 'I know who did it!' button.
+              </p>
+
+              <button class="captainOverlay__info--close">Back</button>
+            </div>
+            <div class="captainOverlay__final">
+              <img
+                src="/ts-game/assets/captain-Cn-JVcTs.png"
+                class="captainOverlay__final--img"
+              />
+              <h3 class="captainOverlay__final--title">So what happened?</h3>
+              <p class="captainOverlay__final--text">
+                Careful! Don't click "Choose" until you have selected both of
+                your options
+              </p>
+
+              <form class="accusationForm">
+                <label for="suspects" class="accusationForm__text"
+                  >Choose a suspect:</label
+                >
+                <select name="suspects" class="accusationForm__suspects">
+                  <option value="angela">Angela</option>
+                  <option value="george">George</option>
+                  <option value="liam">Liam</option>
+                  <option value="olivia">Olivia</option>
+                  <option value="rachel">Rachel</option>
+                  <option value="tom">Tom</option>
+                  <option value="tessa">Tessa</option>
+                </select>
+                <label for="weapons" class="accusationForm__text"
+                  >Choose a weapon:</label
+                >
+                <select name="weapons" class="accusationForm__weapons">
+                  <option value="bucket">Bucket</option>
+                  <option value="chair">Chair closest to Tessa</option>
+                  <option value="rope">Rope</option>
+                  <option value="chair2">Chair further from Tessa</option>
+                  <option value="extinguisher">Fire Extinguisher</option>
+                  <option value="barrel">Barrel</option>
+                  <option value="bell">Bell</option>
+                </select>
+                <button type="submit" class="accusationForm__submit">
+                  Choose
+                </button>
+              </form>
+              <p class="captainOverlay__final--person-result"></p>
+              <p class="captainOverlay__final--weapon-result"></p>
+              <button class="captainOverlay__final--close">Back</button>
+              <button class="captainOverlay__final--end-game">
+                Play again!
+              </button>
+            </div>
+            <button class="captainOverlay__close">Close</button>
+          </div>
+        </section>
+        <div class="header">
+          <div class="header__notebook">
+            <img src="/ts-game/assets/notepad-BMgVKAy8.png" class="header__notebook--img" />
+            <button class="header__notebook--btn">Detective's Notebook</button>
+          </div>
+          <div class="header__captain">
+            <img
+              src="/ts-game/assets/captain-Cn-JVcTs.png"
+              class="header__captain--img"
+            /><button class="header__captain--btn">Speak to the Captain</button>
+          </div>
+          <p class="header__info">Unsure what to do? Speak to the Captain!</p>
+        </div>
+        <ul class="board">
+          <li class="board__piece">
+            <button class="board__piece--tool" id="bucket">
+              <img src="/ts-game/assets/bucket-BXOpo_qH.png" />
+            </button>
+          </li>
+          <li class="board__piece">
+            <button
+              class="board__piece--person"
+              id="liam"
+              style="background-image: url('/ts-game/assets/liam-BZxi5ZOu.png')"
+            >
+              <h4
+                style="
+                  background-color: #fff4f1;
+                  border-radius: 10px;
+                  padding: 3px;
+                "
+              >
+                Liam
+              </h4>
+            </button>
+          </li>
+          <li class="board__piece"></li>
+          <li class="board__piece">
+            <button
+              class="board__piece--tool"
+              id="chair"
+              style="background-image: url('/ts-game/assets/chair-BdzJD4SV.png')"
+            ></button>
+          </li>
+
+          <li class="board__piece">
+            <button class="board__piece--tool" id="rope">
+              <img src="/ts-game/assets/rope-q0yBKgtq.png" />
+            </button>
+          </li>
+          <li class="board__piece">
+            <button class="board__piece--tool" id="bell">
+              <img src="/ts-game/assets/bell-DTwThho9.png" />
+            </button>
+          </li>
+          <li class="board__piece"></li>
+          <li class="board__piece">
+            <button
+              class="board__piece--person"
+              id="olivia"
+              style="background-image: url('/ts-game/assets/olivia-CuiCFPpX.png')"
+            >
+              <h4
+                style="
+                  background-color: #fff4f1;
+                  border-radius: 10px;
+                  padding: 3px;
+                "
+              >
+                Olivia
+              </h4>
+            </button>
+          </li>
+          <li class="board__piece">
+            <button
+              class="board__piece--person"
+              id="tom"
+              style="background-image: url('/ts-game/assets/tom-NXHPbXoz.png')"
+            >
+              <h4
+                style="
+                  background-color: #fff4f1;
+                  border-radius: 10px;
+                  padding: 3px;
+                "
+              >
+                Tom
+              </h4>
+            </button>
+          </li>
+          <li class="board__piece"></li>
+          <li class="board__piece"></li>
+          <li class="board__piece">
+            <button
+              class="board__piece--tool"
+              id="chair2"
+              style="background-image: url('/ts-game/assets/chair-BdzJD4SV.png')"
+            ></button>
+          </li>
+          <li class="board__piece">
+            <button class="board__piece--person" id="tessa">
+              <img
+                src="/ts-game/assets/tessa-BTdoQ7J8.png"
+                style="padding: 10px 0px 0px 10px"
+              />
+            </button>
+          </li>
+          <li class="board__piece">
+            <button
+              class="board__piece--person"
+              style="
+                padding-left: 10px;
+                background-image: url('/ts-game/assets/rachel-BMruQ-PM.png');
+              "
+              id="rachel"
+            >
+              <h4
+                style="
+                  background-color: #fff4f1;
+                  border-radius: 10px;
+                  padding: 3px;
+                "
+              >
+                Rachel
+              </h4>
+            </button>
+          </li>
+          <li class="board__piece"></li>
+          <li class="board__piece"></li>
+          <li class="board__piece"></li>
+          <li class="board__piece"></li>
+          <li class="board__piece"></li>
+          <li class="board__piece">
+            <button class="board__piece--tool" id="extinguisher">
+              <img src="/ts-game/assets/extinguisher-DNFW7IDX.png" />
+            </button>
+          </li>
+          <li class="board__piece">
+            <button class="board__piece--tool" id="barrel">
+              <img src="/ts-game/assets/barrel-dSlmg14C.png" />
+            </button>
+          </li>
+          <li class="board__piece">
+            <button
+              class="board__piece--person"
+              id="angela"
+              style="background-image: url('/ts-game/assets/angela-CPQP5Ump.png')"
+            >
+              <h4
+                style="
+                  background-color: #fff4f1;
+                  border-radius: 10px;
+                  padding: 3px;
+                "
+              >
+                Angela
+              </h4>
+            </button>
+          </li>
+          <li class="board__piece">
+            <button
+              class="board__piece--person"
+              id="george"
+              style="background-image: url('/ts-game/assets/george-WC-m9MXy.png')"
+            >
+              <h4
+                style="
+                  background-color: #fff4f1;
+                  border-radius: 10px;
+                  padding: 3px;
+                "
+              >
+                George
+              </h4>
+            </button>
+          </li>
+          <li class="board__piece"></li>
+          <li class="board__piece"></li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
