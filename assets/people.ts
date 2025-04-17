@@ -30,7 +30,7 @@ export const olivia = {
   result: `Nope, it wasn't Olivia! She really was in the toilet at 3pm. Bit insensitive of her to be thinking of wedding deposits when her sister died, but she didn't kill her.`,
 };
 export const rachel = {
-  initial: `I haven't stopped crying since I found\nout. I'm in bits. I can't believe she's\nbeen killed right before her wedding.\nWe had our rough moments, and yes she\ndid owe me a lot of money after our\nhairessing business went under, but\nshe was still my best friend.`,
+  initial: `I haven't stopped crying since I found\nout. I'm in bits. I can't believe she's\nbeen killed right before her wedding.\nWe had our rough moments, and yes she\ndid owe me a lot of money after our\nhairdressing business went under, but\nI was still her maid of honour.`,
   alibi: `I had gone to speak to Tessa on the\ndeck, I was upset with her because she\nhas spent a lot of money on this\nwedding and still hasn't paid me her\nshare of the failed hairdressing\nbusiness. It got a bit heated and I\nstormed off, leaving her crying on the\ndeck. But this was at about 2:30,\nnot 3.`,
   accusation: `My money is on Olivia - Tessa was\nthe golden child and Olivia was\nalways in her shadow. She wasn't even\nher maid of honour! You could see it\non her face for the whole trip, she\nhas been in a rotten mood.`,
   summary:
@@ -38,7 +38,7 @@ export const rachel = {
   result: `Nope, it wasn't Rachel! Tessa did owe her a lot of money, but all she did was yell at her and make her cry. Bad, but not murder. She is actually in a worse situation now that her debtee is dead.`,
 };
 export const tom = {
-  initial: `I don't even know what to think. I\nwould've done anything for her at the\nsalon. I DID do anything for her,\nanything she asked me to. Now she's\ngone. She deserved so much better than\nthat useless husband-to-be. She\ndeserved eomeone that would give her\nthe world.`,
+  initial: `I don't even know what to think. I\nwould've done anything for her at the\nsalon. I DID do anything for her,\nanything she asked me to. Now she's\ngone. She deserved so much better than\nthat useless husband-to-be. She\ndeserved someone that would give her\nthe world.`,
   alibi: `I was in my room, watching TV. I\ncould hear some partying going on in\nthe bar, but I'm not really a social\nperson. I did have a couple of beers\nto myself, though.`,
   accusation: `It has to be that fiance of hers.\nThere's no other explanation. He's\nterrible through and through, and\nit's so clear he's in love with\nAngela. Tessa told me they used to\nargue about it all the time, and she\nhad suspicions they were sleeping\ntogether.`,
   summary:
@@ -46,9 +46,10 @@ export const tom = {
   result: `Yes, it was Tom! He didn't have a solid alibi. He heard Tessa crying out of his window whilst watching TV. He went down to comfort her, thinking she wanted to call off the wedding. She yelled in his face, saying that they would never be together. Tom snapped, then instantly regretted his actions.`,
 };
 export const tessa = {
-  initial: "she's been murdered :/",
-  alibi: "she was murdered at that time dummy",
-  accusation: "I mean obviously she knows",
-  summary: "summary of tessa",
+  initial: `Tessa has not been dead for very long,\nher wound on the back of her skull is\nstill bleeding. It's clear that she was\nhit over the head with a heavy object.\nIt also appears she has broken her\nleg, from the position that she is in.\nHer clothes are drenched and red, any\nsort of dust, rust or paint chippings\nare not visible at all.`,
+  alibi: `The last person to see Tessa was\nRachel at about 2:30. They had an\nargument about money that Tessa had\nowed her a lot of money. Rachel had\nstormed off and Tessa was left crying\non the deck.`,
+  accusation: `I mean obviously she knows, not that\nwe can ask her.`,
+  summary:
+    "Tessa was murdered at 3pm, seemingly by a hit to the head with something heavy. No sign of any rust or paint on her due to the amount of blood. She had last been seen at 2:30, having an argument with Rachel.",
   result: "No, she didn't kill herself. You're not clever.",
 };

@@ -35,7 +35,7 @@ export const chair2 = {
     "Nope, it wasn't this chair! It is strange it has only just been put out, maybe to make the crew look neglectful under neglectful management? Who would possibly want to sabotage the Captain?",
 };
 export const extinguisher = {
-  initial: `The fire extinguisher is heavy and\nlooks brand new. You can't see any\nblood on it, some scratches but no\ndust at all. It does, however, have a\nsmall dent near the bottom.`,
+  initial: `The fire extinguisher is heavy and\nlooks brand new. You can't see any\nblood on it, some scratches but no\ndust at all. It does also have a\nsmall dent near the bottom.`,
   closer: `There are actually a few specks of\nblood on the extinguisher, but not\nvery noticeable due to its colour.\nThe paint is chipping inside the\ndent, showing it has been pained\nseveral times before.`,
   under: `Under the fire extinguisher, there\nis a safety log sticker surrounded\nby chipping paint. This shows all the\ntimes that this extinguisher has been\nchecked to make sure it is fit for\nuse. The last time it was checked\nwas 18 months ago - the first time\nit was checked was 1999. Is this safe?`,
   summary:

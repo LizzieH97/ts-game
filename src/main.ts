@@ -29,15 +29,22 @@ const people = document.querySelectorAll<HTMLButtonElement>(
 const weapons = document.querySelectorAll<HTMLDivElement>(
   ".board__piece--tool"
 );
-const cluesBox = document.querySelector<HTMLDivElement>(".overlay");
-const clues = document.querySelector<HTMLDivElement>(".overlay__text");
-const icon = document.querySelector<HTMLImageElement>(".overlay__img");
-const moreCluesBox = document.querySelector<HTMLDivElement>(".overlay__btnbox");
-const moreClues = document.querySelectorAll<HTMLButtonElement>(
-  ".overlay__btnbox--btn"
+const openingScreen = document.querySelector<HTMLDivElement>(".openingScreen");
+const closeOpeningScreen = document.querySelector<HTMLButtonElement>(
+  ".openingScreen__btn"
 );
-const cluesCloseBtn =
-  document.querySelector<HTMLButtonElement>(".overlay__close");
+const cluesBox = document.querySelector<HTMLDivElement>(".cluesOverlay");
+const clues = document.querySelector<HTMLDivElement>(".cluesOverlay__text");
+const icon = document.querySelector<HTMLImageElement>(".cluesOverlay__img");
+const moreCluesBox = document.querySelector<HTMLDivElement>(
+  ".cluesOverlay__btnbox"
+);
+const moreClues = document.querySelectorAll<HTMLButtonElement>(
+  ".cluesOverlay__btnbox--btn"
+);
+const cluesCloseBtn = document.querySelector<HTMLButtonElement>(
+  ".cluesOverlay__close"
+);
 const notebook = document.querySelector<HTMLDivElement>(".notebookOverlay");
 const notebookOpenBtn =
   document.querySelector<HTMLButtonElement>(".header__notebook");
@@ -92,6 +99,12 @@ const personResult = document.querySelector<HTMLParagraphElement>(
 const weaponResult = document.querySelector<HTMLParagraphElement>(
   ".captainOverlay__final--weapon-result"
 );
+const cautionPrompt = document.querySelector<HTMLParagraphElement>(
+  ".captainOverlay__final--text"
+);
+const playAgain = document.querySelector<HTMLButtonElement>(
+  ".captainOverlay__final--end-game"
+);
 const weaponsMap: Record<
   string,
   {
@@ -133,6 +146,8 @@ if (
   !board ||
   !boardPieces ||
   !background ||
+  !closeOpeningScreen ||
+  !openingScreen ||
   !clues ||
   !cluesCloseBtn ||
   !cluesBox ||
@@ -156,11 +171,18 @@ if (
   !selectWeapon ||
   !accuseSuspect ||
   !personResult ||
-  !weaponResult
+  !weaponResult ||
+  !cautionPrompt ||
+  !playAgain
 ) {
   throw new Error("Something went wrong! ");
 }
+// handle functions
 
+const handleCloseOpeningScreen = (event: Event) => {
+  event.preventDefault();
+  openingScreen.style.display = "none";
+};
 const handlePersonClick = (event: Event) => {
   if (!clues || !event.currentTarget) {
     throw new Error("Something went wrong! ");
@@ -170,13 +192,10 @@ const handlePersonClick = (event: Event) => {
   const personID = person.id as string;
   moreCluesBox.id = person.id;
   icon.src = `/${person.id}.png`;
-
   const selectedPerson = peopleMap[personID];
-
   if (selectedPerson) {
     clues.innerText = "";
     startTypewriter({ text: selectedPerson.initial, clues: clues });
-
     moreClues[0].innerText = "Where were you at 3pm?";
     moreClues[1].innerText = "Who do you think it was?";
   }
@@ -190,13 +209,16 @@ const handleWeaponClick = (event: Event) => {
   const weapon = event.currentTarget as HTMLElement;
   const weaponID = weapon.id as string;
   moreCluesBox.id = weapon.id;
-  icon.src = `/${weapon.id}.png`;
+  if (weapon.id === "chair2") {
+    icon.src = "/chair.png";
+  } else {
+    icon.src = `/${weapon.id}.png`;
+  }
 
   const selectedPerson = weaponsMap[weaponID];
   if (selectedPerson) {
     startTypewriter({ text: selectedPerson.initial, clues: clues });
   }
-
   moreClues[0].innerText = "Inspect closer";
   moreClues[1].innerText = "Look underneath";
 };
@@ -247,7 +269,7 @@ const handleAddNoteSubmit = (event: Event) => {
   const bulletPoint = noteInput.value;
   if (!bulletPoint) return;
   const bulletPointAndBtn = document.createElement("li");
-  bulletPointAndBtn.innerHTML = `${bulletPoint} <button class="deleteText">Delete</button>`;
+  bulletPointAndBtn.innerHTML = `${bulletPoint} <button class="deleteText" >Delete</button>`;
   notebookWriting.appendChild(bulletPointAndBtn);
   noteInput.value = "";
 };
@@ -266,12 +288,11 @@ const handleCaptainClose = (event: Event) => {
   captainInfoScr.style.display = "none";
   captainFinalScr.style.display = "none";
   accuseSuspect.style.display = "none";
-  personResult.innerText = "";
-  weaponResult.innerText = "";
 };
 const handleCaptainOptions = (event: Event) => {
   event.preventDefault();
   if (event.target) {
+    cautionPrompt.style.display = "flex";
     const btn = event.currentTarget as HTMLElement;
     captainInitialScr.style.display = "none";
     btn.id === "moreInfo"
@@ -286,17 +307,29 @@ const handleCaptainBack = (event: Event) => {
   captainInfoScr.style.display = "none";
   captainFinalScr.style.display = "none";
   captainInitialScr.style.display = "grid";
+  personResult.innerText = "";
+  weaponResult.innerText = "";
 };
 
 const handleAccusation = (event: Event) => {
   event.preventDefault();
   accuseSuspect.style.display = "none";
+  cautionPrompt.style.display = "none";
+  weaponResult.style.display = "flex";
+  personResult.style.display = "flex";
   const accusedSuspect = selectSuspect.value;
   const accusedWeapon = selectWeapon.value;
   const internalAccusedSuspect = peopleMap[accusedSuspect];
   const internalAccusedWeapon = weaponsMap[accusedWeapon];
-  personResult.innerText = internalAccusedSuspect.result;
-  weaponResult.innerText = internalAccusedWeapon.result;
+  if (accusedSuspect === "tom" && accusedWeapon === "extinguisher") {
+    personResult.innerHTML = internalAccusedSuspect.result;
+    weaponResult.innerText = internalAccusedWeapon.result;
+    captainFinalBackBtn.style.display = "none";
+    playAgain.style.display = "flex";
+  } else {
+    personResult.innerText = internalAccusedSuspect.result;
+    weaponResult.innerText = internalAccusedWeapon.result;
+  }
 };
 
 // event listeners
@@ -306,6 +339,8 @@ people.forEach((person) => person.addEventListener("click", handlePersonClick));
 weapons.forEach((weapon) =>
   weapon.addEventListener("click", handleWeaponClick)
 );
+
+closeOpeningScreen.addEventListener("click", handleCloseOpeningScreen);
 
 cluesCloseBtn.addEventListener("click", handleCluesClose);
 moreClues.forEach((clue) => {
@@ -332,3 +367,6 @@ captainOptionsBtn.forEach((btn) => {
 captainInfoBackBtn.addEventListener("click", handleCaptainBack);
 captainFinalBackBtn.addEventListener("click", handleCaptainBack);
 accuseSuspect.addEventListener("submit", handleAccusation);
+playAgain?.addEventListener("click", () => {
+  location.reload();
+});
