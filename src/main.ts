@@ -35,7 +35,7 @@ const closeOpeningScreen = document.querySelector<HTMLButtonElement>(
 );
 const cluesBox = document.querySelector<HTMLDivElement>(".cluesOverlay");
 const clues = document.querySelector<HTMLDivElement>(".cluesOverlay__text");
-const icon = document.querySelector<HTMLImageElement>(".cluesOverlay__img");
+
 const moreCluesBox = document.querySelector<HTMLDivElement>(
   ".cluesOverlay__btnbox"
 );
@@ -151,7 +151,6 @@ if (
   !clues ||
   !cluesCloseBtn ||
   !cluesBox ||
-  !icon ||
   !moreCluesBox ||
   !notebook ||
   !notebookOpenBtn ||
