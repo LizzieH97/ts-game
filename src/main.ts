@@ -189,7 +189,6 @@ const handlePersonClick = (event: Event) => {
   cluesBox.style.display = "flex";
   const person = event.currentTarget as HTMLElement;
   const personID = person.id as string;
-  moreCluesBox.id = person.id;
 
   const selectedPerson = peopleMap[personID];
   if (selectedPerson) {
@@ -207,7 +206,6 @@ const handleWeaponClick = (event: Event) => {
   cluesBox.style.display = "flex";
   const weapon = event.currentTarget as HTMLElement;
   const weaponID = weapon.id as string;
-  moreCluesBox.id = weapon.id;
 
   const selectedPerson = weaponsMap[weaponID];
   if (selectedPerson) {
