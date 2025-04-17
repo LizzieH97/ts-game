@@ -167,10 +167,7 @@ h4 {
     overflow: hidden;
     white-space: nowrap;
   }
-  &__img {
-    @include mixins.img-small;
-    margin: 40px 0px 0px 10px;
-  }
+
   &__btnbox {
     display: flex;
     flex-direction: row;

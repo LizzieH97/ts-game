@@ -190,7 +190,7 @@ const handlePersonClick = (event: Event) => {
   const person = event.currentTarget as HTMLElement;
   const personID = person.id as string;
   moreCluesBox.id = person.id;
-  // icon.src = `/ts-game/public/${person.id}.png`;
+
   const selectedPerson = peopleMap[personID];
   if (selectedPerson) {
     clues.innerText = "";
@@ -208,11 +208,6 @@ const handleWeaponClick = (event: Event) => {
   const weapon = event.currentTarget as HTMLElement;
   const weaponID = weapon.id as string;
   moreCluesBox.id = weapon.id;
-  // if (weapon.id === "chair2") {
-  //   icon.src = "/ts-game/public/chair.png";
-  // } else {
-  //   icon.src = `/ts-game/public/${weapon.id}.png`;
-  // }
 
   const selectedPerson = weaponsMap[weaponID];
   if (selectedPerson) {
