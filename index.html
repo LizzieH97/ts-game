@@ -51,6 +51,7 @@
             </button>
           </div>
           <div class="captainOverlay__info">
+            <img src="/captain.png" class="captainOverlay__info--img" />
             Click on the people to hear their testimonies, or click on a weapon
             to inspect it. There are some more options underneath if you need to
             hear some more. Once you think you know who murdered Tessa, click on
@@ -58,10 +59,18 @@
             <button class="captainOverlay__info--close">Back</button>
           </div>
           <div class="captainOverlay__final">
-            So who did it?
-            <form>
-              <label for="suspects">Choose a suspect</label>
-              <select name="suspects">
+            <img src="/captain.png" class="captainOverlay__final--img" />
+            <h3 class="captainOverlay__final--title">So what happened?</h3>
+            <p class="captainOverlay__final--text">
+              Careful! Don't click "Choose" until you have selected both of your
+              options
+            </p>
+
+            <form class="accusationForm">
+              <label for="suspects" class="accusationForm__text"
+                >Choose a suspect:</label
+              >
+              <select name="suspects" class="accusationForm__suspects">
                 <option value="angela">Angela</option>
                 <option value="george">George</option>
                 <option value="liam">Liam</option>
@@ -70,7 +79,26 @@
                 <option value="tom">Tom</option>
                 <option value="tessa">Tessa</option>
               </select>
+              <label for="weapons" class="accusationForm__text"
+                >Choose a weapon:</label
+              >
+              <select name="weapons" class="accusationForm__weapons">
+                <option value="bucket">Bucket</option>
+                <option value="chair">Chair closest to Tessa</option>
+                <option value="rope">Rope</option>
+                <option value="chair2">Chair further from Tessa</option>
+                <option value="extinguisher">Fire Extinguisher</option>
+                <option value="barrel">Barrel</option>
+                <option value="bell">Bell</option>
+              </select>
+              <button type="submit" class="accusationForm__submit">
+                Choose
+              </button>
             </form>
+
+            <p class="captainOverlay__final--person-result"></p>
+            <p class="captainOverlay__final--weapon-result"></p>
+            <button class="captainOverlay__final--close">Back</button>
           </div>
           <button class="captainOverlay__close">Close</button>
         </div>

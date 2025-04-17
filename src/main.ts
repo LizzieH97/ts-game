@@ -66,15 +66,41 @@ const captainInitialScr = document.querySelector<HTMLDivElement>(
 const captainOptionsBtn = document.querySelectorAll<HTMLButtonElement>(
   ".captainOverlay__initial--btn"
 );
-const captainBackBtn = document.querySelector<HTMLButtonElement>(
+const captainInfoBackBtn = document.querySelector<HTMLButtonElement>(
   ".captainOverlay__info--close"
+);
+const captainFinalBackBtn = document.querySelector<HTMLButtonElement>(
+  ".captainOverlay__final--close"
 );
 const captainInfoScr = document.querySelector<HTMLDivElement>(
   ".captainOverlay__info"
 );
+const captainFinalScr = document.querySelector<HTMLDivElement>(
+  ".captainOverlay__final"
+);
+const selectSuspect = document.querySelector<HTMLSelectElement>(
+  ".accusationForm__suspects"
+);
+const selectWeapon = document.querySelector<HTMLSelectElement>(
+  ".accusationForm__weapons"
+);
+const accuseSuspect =
+  document.querySelector<HTMLFormElement>(".accusationForm");
+const personResult = document.querySelector<HTMLParagraphElement>(
+  ".captainOverlay__final--person-result"
+);
+const weaponResult = document.querySelector<HTMLParagraphElement>(
+  ".captainOverlay__final--weapon-result"
+);
 const weaponsMap: Record<
   string,
-  { initial: string; closer: string; under: string; summary: string }
+  {
+    initial: string;
+    closer: string;
+    under: string;
+    summary: string;
+    result: string;
+  }
 > = {
   bucket,
   chair,
@@ -86,7 +112,13 @@ const weaponsMap: Record<
 };
 const peopleMap: Record<
   string,
-  { initial: string; alibi: string; accusation: string; summary: string }
+  {
+    initial: string;
+    alibi: string;
+    accusation: string;
+    summary: string;
+    result: string;
+  }
 > = {
   angela,
   george,
@@ -117,7 +149,14 @@ if (
   !captainCloseBtn ||
   !captainInitialScr ||
   !captainInfoScr ||
-  !captainBackBtn
+  !captainInfoBackBtn ||
+  !captainFinalBackBtn ||
+  !captainFinalScr ||
+  !selectSuspect ||
+  !selectWeapon ||
+  !accuseSuspect ||
+  !personResult ||
+  !weaponResult
 ) {
   throw new Error("Something went wrong! ");
 }
@@ -225,6 +264,10 @@ const handleCaptainClose = (event: Event) => {
   event.preventDefault();
   captainOverlay.style.display = "none";
   captainInfoScr.style.display = "none";
+  captainFinalScr.style.display = "none";
+  accuseSuspect.style.display = "none";
+  personResult.innerText = "";
+  weaponResult.innerText = "";
 };
 const handleCaptainOptions = (event: Event) => {
   event.preventDefault();
@@ -233,15 +276,29 @@ const handleCaptainOptions = (event: Event) => {
     captainInitialScr.style.display = "none";
     btn.id === "moreInfo"
       ? (captainInfoScr.style.display = "flex")
-      : console.log("second option", btn);
+      : ((captainFinalScr.style.display = "flex"),
+        (accuseSuspect.style.display = "flex"));
   }
 };
 
 const handleCaptainBack = (event: Event) => {
   event.preventDefault();
   captainInfoScr.style.display = "none";
+  captainFinalScr.style.display = "none";
   captainInitialScr.style.display = "grid";
 };
+
+const handleAccusation = (event: Event) => {
+  event.preventDefault();
+  accuseSuspect.style.display = "none";
+  const accusedSuspect = selectSuspect.value;
+  const accusedWeapon = selectWeapon.value;
+  const internalAccusedSuspect = peopleMap[accusedSuspect];
+  const internalAccusedWeapon = weaponsMap[accusedWeapon];
+  personResult.innerText = internalAccusedSuspect.result;
+  weaponResult.innerText = internalAccusedWeapon.result;
+};
+
 // event listeners
 
 people.forEach((person) => person.addEventListener("click", handlePersonClick));
@@ -272,4 +329,6 @@ captainCloseBtn.addEventListener("click", handleCaptainClose);
 captainOptionsBtn.forEach((btn) => {
   btn.addEventListener("click", handleCaptainOptions);
 });
-captainBackBtn.addEventListener("click", handleCaptainBack);
+captainInfoBackBtn.addEventListener("click", handleCaptainBack);
+captainFinalBackBtn.addEventListener("click", handleCaptainBack);
+accuseSuspect.addEventListener("submit", handleAccusation);
