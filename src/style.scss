@@ -21,7 +21,7 @@ h4 {
   width: 700px;
   height: 600px;
 
-  background: url("/finalScene.png");
+  background: url("../public/finalScene.png");
   background-size: cover;
   &__title {
     margin: 0px;
@@ -39,7 +39,7 @@ h4 {
 .background {
   width: 800px;
   height: 700px;
-  background: url("/boat.png");
+  background: url("../public/background.png");
   background-repeat: no-repeat;
   background-size: 800px 1000px;
   display: flex;
@@ -106,7 +106,7 @@ h4 {
     padding: 2px;
     display: flex;
     flex-direction: row;
-    background: url("/background.png");
+    background: url("../public/background.png");
     background-size: cover;
     gap: 0px;
     &--tool {
@@ -141,7 +141,7 @@ h4 {
   display: none;
   width: 600px;
   height: 600px;
-  background-image: url("/clue.png");
+  background-image: url("../public/clue.png");
   background-size: cover;
   flex-direction: column;
   flex-flow: column;
@@ -187,7 +187,7 @@ h4 {
   display: none;
   width: 400px;
   height: 400px;
-  background-image: url("/page.png");
+  background-image: url("../public/page.png");
   background-size: cover;
   flex-direction: column;
 
@@ -220,7 +220,7 @@ h4 {
   width: 600px;
   height: 500px;
 
-  background: url("/finalScene.png");
+  background: url("../public/finalScene.png");
   background-size: cover;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
